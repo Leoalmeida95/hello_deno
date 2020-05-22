@@ -1,9 +1,11 @@
-import { serve } from "https://deno.land/std@0.52.0/http/server.ts";
+import { serve } from "https://deno.land/std@0.50.0/http/server.ts";
+import "https://deno.land/x/dotenv/mod.ts";
 
-const s = serve({ port: 8000 });
+const PORT = Deno.env.get('PORT') || 8080;
+const s = serve(`0.0.0.0:${PORT}`);
+const body = new TextEncoder().encode("Hello, Deno\n");
 
-console.log("http://localhost:8000/");
-
+console.log(`Server started on port ${PORT}`);
 for await (const req of s) {
-    req.respond({ body: "Hello World\n" });
+  req.respond({ body });
 }

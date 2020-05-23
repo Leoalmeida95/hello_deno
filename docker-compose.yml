@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  deno:
+    network_mode: bridge
+    build: .
+    ports:
+      - "8000:8000"
